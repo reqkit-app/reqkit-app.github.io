@@ -17,29 +17,24 @@
       line-height: 1.7;
       color: #1a1a1a;
       background: #fff;
-      max-width: 740px;
+      max-width: 960px;
       margin: 0 auto;
       padding: 3rem 1.5rem 5rem;
+    }
+
+    .content-wrap { 
+      max-width: 960px;
+      margin: 0 auto;
+      text-align: center;
     }
 
     /* HEADER */
     header {
       display: flex;
       align-items: center;
-      gap: 12px;
+      justify-content: center;
+      gap: 4px;
       margin-bottom: 2.5rem;
-    }
-
-    .logo-box {
-      width: 36px; height: 36px;
-      background: #2563eb;
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      color: #fff;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 15px;
-      font-weight: 400;
-      flex-shrink: 0;
     }
 
     header h1 {
@@ -60,7 +55,6 @@
     .description {
       color: #555;
       font-size: 0.95rem;
-      max-width: 540px;
       margin-bottom: 1.8rem;
     }
 
@@ -93,15 +87,6 @@
       box-shadow: 0 4px 24px rgba(0,0,0,0.06);
     }
 
-    .screenshot-bar {
-      background: #f5f5f7;
-      border-bottom: 1px solid #e4e4e8;
-      padding: 9px 13px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
     .dot { width: 9px; height: 9px; border-radius: 50%; }
     .d-r { background: #ff5f57; }
     .d-y { background: #febc2e; }
@@ -112,20 +97,6 @@
       font-size: 0.7rem;
       color: #999;
       font-family: 'JetBrains Mono', monospace;
-    }
-
-    /* Replace .screenshot-img with a real <img> when ready */
-    .screenshot-img {
-      width: 100%;
-      display: block;
-      background: #16161a;
-      min-height: 340px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #444;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
     }
 
     /* SECTION */
@@ -213,42 +184,127 @@
     }
 
     footer a:hover { color: #555; }
+    /* CAROUSEL */
+    .carousel {
+      margin-bottom: 3rem;
+    }
+
+    .carousel-inner {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 -48px;  /* pull arrows outside the content width */
+    }
+
+    .carousel-track {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border: 1px solid #e4e4e8;
+      border-radius: 10px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    }
+
+    .carousel-slide {
+      display: none;
+    }
+
+    .carousel-slide.active {
+      display: block;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      display: block;
+    }
+
+    .carousel-dots {
+      display: none;
+    }
+
+    .carousel-arrow {
+      flex-shrink: 0;
+      background: #f4f4f6;
+      border: 1px solid #e4e4e8;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.15s, box-shadow 0.15s;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      user-select: none;
+    }
+
+    .carousel-arrow:hover {
+      background: #e8e8ec;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+
+    .carousel-arrow svg {
+      width: 16px;
+      height: 16px;
+      color: #333;
+    }
+
+    .carousel-prev { left: 10px; }
+    .carousel-next { right: 10px; }
   </style>
 </head>
 <body>
 
+  <div class="content-wrap">
+
   <header>
-    <div class="logo-box">R</div>
-    <h1>ReqKit</h1>
+    <img src="images/reqkit_64.ico" alt="ReqKit" width="36" height="36" style="border-radius:8px" />
+    <h1>eqKit</h1>
   </header>
 
   <p class="tagline">A native HTTP client for Windows developers</p>
 
   <p class="description">
-    Test and debug APIs without the overhead. ReqKit is built directly with Win32 APIs —
-    no Electron, no runtime, no bloat. Instant startup, low memory, runs on any Windows 10 or 11 machine.
+    Test and debug APIs without the overhead. ReqKit is built directly with Win32 APIs — no Electron, no runtime, no bloat. Instant startup, low memory, runs on any Windows 10 or 11 machine.
   </p>
 
-  <a href="#" class="cta">
+  <a href="https://apps.microsoft.com/detail/9MW1BBD4TBV1" class="cta" target="_blank" rel="noopener">
     <svg class="win-icon" viewBox="0 0 24 24" fill="currentColor">
       <path d="M11.4 2H2v9.4h9.4V2zm1.2 0v9.4H22V2h-9.4zm-1.2 10.6H2V22h9.4v-9.4zm1.2 0V22H22v-9.4h-9.4z"/>
     </svg>
     Download on Microsoft Store
   </a>
 
-  <!-- Screenshot -->
-  <div class="screenshot">
-    <div class="screenshot-bar">
-      <div class="dot d-r"></div>
-      <div class="dot d-y"></div>
-      <div class="dot d-g"></div>
-      <span class="bar-label">ReqKit</span>
-    </div>
-    <!-- Replace the div below with your actual screenshot:
-         <img src="screenshot.png" alt="ReqKit screenshot" style="width:100%;display:block" />
-    -->
-    <div class="screenshot-img">[ screenshot ]</div>
   </div>
+
+  <!-- Screenshot carousel -->
+  <div class="carousel">
+    <div class="carousel-inner">
+      <button class="carousel-arrow carousel-prev" aria-label="Previous">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </button>
+      <div class="carousel-track">
+        <div class="carousel-slide"><img src="images/reqkit_screen_2.png" alt="ReqKit screenshot 1" /></div>
+        <div class="carousel-slide"><img src="images/reqkit_screen_4.png" alt="ReqKit screenshot 2" /></div>
+        <div class="carousel-slide"><img src="images/reqkit_screen_5.png" alt="ReqKit screenshot 3" /></div>
+      </div>
+      <button class="carousel-arrow carousel-next" aria-label="Next">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </button>
+    </div>
+    <div class="carousel-dots">
+      <span class="dot-ind"></span>
+      <span class="dot-ind"></span>
+      <span class="dot-ind"></span>
+    </div>
+  </div>
+
+  <div class="content-wrap">
 
   <hr />
 
@@ -280,10 +336,31 @@
   <hr />
 
   <footer>
-    <span>© 2025 FDSoftware</span>
+    <span>© 2026 FDSoftware</span>
     <a href="mailto:fdsoftware.support@gmail.com">fdsoftware.support@gmail.com</a>
     <a href="#">Privacy Policy</a>
   </footer>
+
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll(".carousel-slide");
+    let current  = 0;
+
+    function goTo(index) {
+      slides[current].classList.remove("active");
+      current = (index + slides.length) % slides.length;
+      slides[current].classList.add("active");
+    }
+
+    function next() { goTo(current + 1); }
+    function prev() { goTo(current - 1); }
+
+    slides[0].classList.add("active");
+
+    document.querySelector(".carousel-next").addEventListener("click", next);
+    document.querySelector(".carousel-prev").addEventListener("click", prev);
+  </script>
 
 </body>
 </html>
