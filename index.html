@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ReqKit — Native HTTP Client for Windows</title>
+  <link rel="icon" type="image/x-icon" href="images/reqkit_64.ico" />
   <meta name="description" content="A fast, native Windows HTTP client for testing APIs. No Electron, no bloat." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -87,6 +88,27 @@
       box-shadow: 0 4px 24px rgba(0,0,0,0.06);
     }
 
+    .screenshot img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .screenshot--with-caption {
+      margin-bottom: 1rem;
+      max-width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .screenshot--with-caption .bar-label {
+      font-size: 0.78rem;
+      color: #999;
+      margin: 4px 0 0 0;
+      margin-bottom: 3rem;
+      line-height: 1.2;
+    }
+
     .dot { width: 9px; height: 9px; border-radius: 50%; }
     .d-r { background: #ff5f57; }
     .d-y { background: #febc2e; }
@@ -97,6 +119,7 @@
       font-size: 0.7rem;
       color: #999;
       font-family: 'JetBrains Mono', monospace;
+      text-align: center;
     }
 
     /* SECTION */
@@ -107,6 +130,7 @@
       letter-spacing: 0.1em;
       color: #999;
       margin-bottom: 1rem;
+      text-align: center;
     }
 
     /* FEATURES */
@@ -119,6 +143,10 @@
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left; /* ensure items are left-aligned */
     }
 
     .features li {
@@ -147,6 +175,8 @@
       display: flex;
       flex-direction: column;
       gap: 0.4rem;
+      max-width: 700px;
+      margin: 0 auto;
     }
 
     .req-list li {
@@ -252,6 +282,49 @@
 
     .carousel-prev { left: 10px; }
     .carousel-next { right: 10px; }
+
+    .bar-chart {
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .bar-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .label {
+      width: 180px;
+      font-size: 0.9rem;
+      color: #333;
+    }
+
+    .value {
+      width: 80px;
+      font-size: 0.85rem;
+      color: #666;
+      text-align: right;
+    }
+
+    .bar {
+      flex: 1;
+      height: 8px;
+      background: #eee;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .bar div {
+      height: 100%;
+      width: var(--w);
+      background: linear-gradient(90deg, #6c8cff, #8aa8ff);
+      border-radius: 4px;
+    }
+
   </style>
 </head>
 <body>
@@ -320,6 +393,81 @@
       <li>Response body download to file</li>
       <li>Dark, Light, and Auto theme — follows Windows system setting</li>
     </ul>
+  </section>
+
+  <hr />
+
+  <!-- Comparison -->
+  <section class="comparison">
+    <h2>Memory usage in context</h2>
+
+    <p style="max-width:700px;margin:0 auto 1.5rem;color:#555;font-size:0.95rem;">
+      Different API clients are built using different technologies, which can impact resource usage.
+      Native applications typically use less memory than browser-based tools.
+    </p>
+
+    <div class="bar-chart">
+      <div class="bar-row">
+        <span class="label">ReqKit (native)</span>
+        <div class="bar"><div style="--w: 4%"></div></div>
+        <span class="value">< 10 MB</span>
+      </div>
+
+      <div class="bar-row">
+        <span class="label">Lightweight desktop client</span>
+        <div class="bar"><div style="--w: 20%"></div></div>
+        <span class="value">~50–150 MB</span>
+      </div>
+
+      <div class="bar-row">
+        <span class="label">Browser-based client</span>
+        <div class="bar"><div style="--w: 70%"></div></div>
+        <span class="value">~300–800+ MB</span>
+      </div>
+    </div>
+    </div>
+
+    <p style="max-width:700px;margin:1rem auto 0;color:#777;font-size:0.8rem;">
+      Memory usage varies depending on workload, open requests, and background processes.
+      Values shown represent typical ranges observed in common usage scenarios.
+    </p>
+  </section>
+
+
+
+  <hr />
+
+  <!-- Performance -->
+  <section class="performance">
+    <h2>Performance</h2>
+
+    <p style="max-width:700px;margin:0 auto 1.5rem;color:#555;font-size:0.95rem;">
+      ReqKit is built as a native Win32 application, designed to be lightweight and responsive.
+      Its performance is evaluated through real end-to-end scenarios and memory profiling,
+      reflecting typical day-to-day API workflows.
+    </p>
+
+    <div class="screenshot screenshot--with-caption">
+      <img src="images/reqkit_mem_profile.png" alt="ReqKit memory usage profiler" />
+    </div>
+
+    <div class="bar-label">Memory profile during automated test session (5 minutes)</div>
+
+    <p style="max-width:700px;margin:1rem auto 1.5rem;color:#555;font-size:0.9rem;">
+      In practice, this translates to fast startup and a consistently low memory footprint.
+      During a 5-minute automated test session, memory usage remains <strong>below 10 MB</strong>,
+      even when handling larger payloads, authentication flows, and UI interactions.
+    </p>
+
+    <div style="text-align:left;max-width:700px;margin:0 auto;">
+      <ul style="list-style:none;padding:0;color:#333;font-size:0.9rem;">
+        <li>→ Native Windows application with minimal overhead</li>
+        <li>→ Consistent performance during sustained usage</li>
+        <li>→ Validated through automated end-to-end scenarios</li>
+        <li>→ Handles typical API workloads, including larger responses</li>
+        <li>→ Supports the full HTTP workflow (methods, headers, auth, body)</li>
+      </ul>
+    </div>
   </section>
 
   <hr />
